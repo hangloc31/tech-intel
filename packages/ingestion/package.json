@@ -1,0 +1,14 @@
+{
+  "name": "@tech-intel/ingestion",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "worker": "node --experimental-strip-types src/worker.ts --once"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

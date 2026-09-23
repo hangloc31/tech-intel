@@ -1,0 +1,12 @@
+AI:
+  children: [LLM, Agents, Robotics, Computer Vision, AI Infrastructure]
+Developer:
+  children: [Programming Languages, Frameworks, Databases, DevOps, Cloud]
+Hardware:
+  children: [Chips, GPUs, CPUs, Devices]
+Startups: {}
+Security: {}
+Open Source: {}
+Research: {}
+Web: {}
+Mobile: {}

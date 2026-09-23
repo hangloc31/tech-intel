@@ -1,0 +1,47 @@
+# Source registry. Secrets NEVER here — use env vars.
+# cadence: how often to poll. quota-low sources use adaptive: true.
+sources:
+  - id: hackernews
+    type: api
+    enabled: true
+    cadence_ms: 300000
+    trust: 0.9
+
+  - id: github-trending
+    type: api
+    enabled: true
+    cadence_ms: 600000
+    trust: 0.8
+
+  - id: techcrunch
+    type: rss
+    enabled: true
+    url: https://techcrunch.com/feed/
+    cadence_ms: 600000
+    trust: 0.8
+
+  - id: theverge
+    type: rss
+    enabled: true
+    url: https://www.theverge.com/rss/index.xml
+    cadence_ms: 600000
+    trust: 0.8
+
+  - id: openai-blog
+    type: rss
+    enabled: true
+    url: https://openai.com/news/rss.xml
+    cadence_ms: 1800000
+    trust: 0.95
+
+  - id: reddit-machinelearning
+    type: api
+    enabled: false # needs OAuth; enable with REDDIT_* env
+    cadence_ms: 600000
+    trust: 0.6
+
+  - id: x-tech
+    type: api
+    enabled: false # needs X_API_BEARER; provider abstraction in packages/ingestion
+    cadence_ms: 300000
+    trust: 0.6
