@@ -11,6 +11,7 @@ export interface NormalizedItem {
   published_at: string; // UTC ISO
   content_type: ContentType;
   summary?: string;
+  image_url?: string;
   topics: string[];
   entities: string[];
 }

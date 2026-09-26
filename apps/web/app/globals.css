@@ -1,0 +1,125 @@
+/*
+ * Design tokens + base styles.
+ *
+ * Dense-terminal voice (HN / Linear): compact rows, hairline borders, one accent.
+ * Dark by default, light via prefers-color-scheme or the header toggle (data-theme).
+ * `light-dark()` follows the resolved color-scheme, so both palettes are declared once.
+ * No CSS framework on purpose (AGENTS.md: prefer stdlib, no dep for convenience).
+ */
+
+:root {
+  color-scheme: dark light;
+
+  /* Surfaces */
+  --bg: light-dark(#fbfbfc, #0a0b0e);
+  --surface: light-dark(#ffffff, #101218);
+  --surface-2: light-dark(#f1f3f7, #171a21);
+  --surface-3: light-dark(#e8eaf0, #1e222b);
+  --border: light-dark(#e4e6ec, #21242c);
+  --border-strong: light-dark(#c8ccd6, #333844);
+
+  /* Text */
+  --text: light-dark(#0d1017, #e9ebf0);
+  --text-muted: light-dark(#596070, #99a1ae);
+  --text-dim: light-dark(#858c99, #6b7280);
+
+  /* Accent + status */
+  --accent: light-dark(#1c5ed8, #7aa9ff);
+  --accent-soft: light-dark(#e9f0fd, #16233a);
+  --danger: light-dark(#b42318, #ff7b72);
+  --ok: light-dark(#0d7a4f, #4ade80);
+
+  /* Shape + depth */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-2: 0 10px 30px -14px rgb(0 0 0 / 0.35);
+
+  /* Type */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Motion */
+  --t-fast: 120ms;
+  --t-med: 200ms;
+
+  /* Layout */
+  --page-max: 1180px;
+  --rail-w: 300px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--text-muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

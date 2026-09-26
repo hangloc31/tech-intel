@@ -15,10 +15,11 @@
     "test:unit": "vitest run --project unit",
     "lint": "echo 'lint: tsc --noEmit per workspace (eslint added in M2)'",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "worker": "npm run worker --workspace=packages/ingestion --if-present"
+    "worker": "npm run worker --workspace=packages/ingestion --if-present --",
+    "db:migrate": "npm run migrate --workspace=packages/infra --if-present"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.9"
   },
   "license": "UNLICENSED"
 }

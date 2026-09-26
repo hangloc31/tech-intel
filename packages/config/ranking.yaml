@@ -1,0 +1,10 @@
+# Ranking weights (v1, tunable without code changes).
+# Must stay in sync with DEFAULT_WEIGHTS in packages/domain/src/rank.ts.
+weights:
+  recency: 0.5
+  trust: 0.25
+  cross_source: 0.15
+  engagement: 0.1
+  half_life_hours: 24
+trending_half_life_hours: 6
+trending_window_hours: 48

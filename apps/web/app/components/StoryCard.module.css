@@ -1,0 +1,185 @@
+/* Story cards: one dense row (default) + one hero for the lead story. */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: background var(--t-fast) ease, border-color var(--t-fast) ease;
+}
+
+/* Separator drawn as a pseudo-element so hovering a row can remove it cleanly
+   instead of fighting the sibling border. */
+.row + .row::before {
+  content: "";
+  position: absolute;
+  inset: 0 12px auto 12px;
+  height: 1px;
+  background: var(--border);
+}
+
+.row:hover::before,
+.row:hover + .row::before {
+  background: transparent;
+}
+
+.row:hover {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.rank {
+  flex-shrink: 0;
+  width: 22px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: right;
+  padding-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.body {
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.row:hover .title {
+  color: var(--accent);
+}
+
+.summary {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  margin: 5px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+/* Push the timestamp to the right edge of the row. */
+.meta time {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+}
+
+.thumb {
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+/* ---- Hero (lead story) ---- */
+
+.hero {
+  display: block;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color var(--t-fast) ease, transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
+}
+
+.hero:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
+  color: inherit;
+}
+
+.heroMedia {
+  display: block;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.heroBody {
+  display: block;
+  padding: 14px 16px 16px;
+}
+
+.heroKicker {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hero:hover .heroTitle {
+  color: var(--accent);
+}
+
+.heroSummary {
+  margin: 7px 0 0;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 18px;
+  }
+  .rank {
+    display: none;
+  }
+}

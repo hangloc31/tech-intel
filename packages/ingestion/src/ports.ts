@@ -34,5 +34,6 @@ export interface ParsedItem {
   author?: string;
   published_at: string;
   summary?: string;
+  image_url?: string;
   raw: unknown;
 }

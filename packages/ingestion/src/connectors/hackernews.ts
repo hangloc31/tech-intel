@@ -7,12 +7,33 @@ async function getJson(url: string, timeoutMs = 10000): Promise<unknown> {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    const res = await fetch(url, { signal: ctrl.signal });
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      headers: { "user-agent": "tech-intel/0.1 (+attribution; respects robots)" },
+    });
     if (!res.ok) throw new Error(`hn http ${res.status}`);
     return await res.json();
   } finally {
     clearTimeout(t);
   }
+}
+
+export interface HnItemRaw {
+  id: number;
+  title?: string;
+  url?: string;
+  by?: string;
+  time?: number;
+  score?: number;
+  descendants?: number;
+  deleted?: boolean;
+  dead?: boolean;
+  type?: string;
+}
+
+/** Deleted/dead/missing items are skipped quietly (common on HN). */
+export function isUsableHnItem(item: HnItemRaw | null | undefined): item is HnItemRaw {
+  return !!item && !item.deleted && !item.dead && typeof item.title === "string" && item.title.length > 0;
 }
 
 export function createHnConnector(): SourceConnector {
@@ -22,10 +43,8 @@ export function createHnConnector(): SourceConnector {
       ctx.log("hn.fetch.topstories");
       const ids = (await getJson(`${HN_BASE}/topstories.json`)) as number[];
       for (const id of ids.slice(0, 30)) {
-        const item = (await getJson(`${HN_BASE}/item/${id}.json`)) as {
-          id: number; title?: string; url?: string; by?: string; time?: number; score?: number; descendants?: number;
-        };
-        if (!item?.title) continue;
+        const item = (await getJson(`${HN_BASE}/item/${id}.json`)) as HnItemRaw | null;
+        if (!isUsableHnItem(item)) continue;
         yield {
           source_id: "hackernews",
           external_id: String(item.id),

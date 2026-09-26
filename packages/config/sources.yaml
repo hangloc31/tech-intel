@@ -36,12 +36,166 @@ sources:
 
   - id: reddit-machinelearning
     type: api
-    enabled: false # needs OAuth; enable with REDDIT_* env
-    cadence_ms: 600000
+    enabled: false # keyless public JSON is heavily rate-limited; enable selectively
+    cadence_ms: 900000
     trust: 0.6
+
+  - id: producthunt
+    type: api
+    enabled: false # needs PRODUCTHUNT_TOKEN env
+    cadence_ms: 3600000
+    trust: 0.5
 
   - id: x-tech
     type: api
     enabled: false # needs X_API_BEARER; provider abstraction in packages/ingestion
     cadence_ms: 300000
     trust: 0.6
+
+  # ---- M6 company/research blogs pack (all verified 200, 2026-09-23) ----
+  - id: github-blog
+    type: rss
+    enabled: true
+    url: https://github.blog/feed/
+    cadence_ms: 1800000
+    trust: 0.85
+
+  - id: github-changelog
+    type: rss
+    enabled: true
+    url: https://github.blog/changelog/feed/
+    cadence_ms: 1800000
+    trust: 0.85
+
+  - id: arstechnica
+    type: rss
+    enabled: true
+    url: https://feeds.arstechnica.com/arstechnica/index
+    cadence_ms: 1800000
+    trust: 0.8
+
+  - id: theregister
+    type: rss
+    enabled: true
+    url: https://www.theregister.com/headlines.atom
+    cadence_ms: 1800000
+    trust: 0.7
+
+  - id: schneier
+    type: rss
+    enabled: true
+    url: https://www.schneier.com/feed/
+    cadence_ms: 3600000
+    trust: 0.9
+
+  - id: krebsonsecurity
+    type: rss
+    enabled: true
+    url: https://krebsonsecurity.com/feed/
+    cadence_ms: 3600000
+    trust: 0.9
+
+  - id: martinfowler
+    type: rss
+    enabled: true
+    url: https://martinfowler.com/feed.atom
+    cadence_ms: 3600000
+    trust: 0.85
+
+  - id: stackoverflow-blog
+    type: rss
+    enabled: true
+    url: https://stackoverflow.blog/feed/
+    cadence_ms: 3600000
+    trust: 0.8
+
+  - id: css-tricks
+    type: rss
+    enabled: true
+    url: https://css-tricks.com/feed/
+    cadence_ms: 3600000
+    trust: 0.7
+
+  - id: smashingmagazine
+    type: rss
+    enabled: true
+    url: https://www.smashingmagazine.com/feed/
+    cadence_ms: 3600000
+    trust: 0.7
+
+  - id: codinghorror
+    type: rss
+    enabled: true
+    url: https://blog.codinghorror.com/rss/
+    cadence_ms: 3600000
+    trust: 0.75
+
+  - id: simonwillison
+    type: rss
+    enabled: true
+    url: https://simonwillison.net/atom/everything/
+    cadence_ms: 1800000
+    trust: 0.9
+
+  - id: huggingface-blog
+    type: rss
+    enabled: true
+    url: https://huggingface.co/blog/feed.xml
+    cadence_ms: 1800000
+    trust: 0.9
+
+  - id: cloudflare-blog
+    type: rss
+    enabled: true
+    url: https://blog.cloudflare.com/rss/
+    cadence_ms: 1800000
+    trust: 0.85
+
+  - id: netflix-techblog
+    type: rss
+    enabled: true
+    url: https://netflixtechblog.com/feed
+    cadence_ms: 3600000
+    trust: 0.8
+
+  - id: bair-blog
+    type: rss
+    enabled: true
+    url: https://bair.berkeley.edu/blog/feed.xml
+    cadence_ms: 3600000
+    trust: 0.9
+
+  - id: slack-engineering
+    type: rss
+    enabled: true
+    url: https://slack.engineering/feed/
+    cadence_ms: 3600000
+    trust: 0.8
+
+  - id: lyft-engineering
+    type: rss
+    enabled: true
+    url: https://eng.lyft.com/feed
+    cadence_ms: 3600000
+    trust: 0.8
+
+  - id: tbray
+    type: rss
+    enabled: true
+    url: https://www.tbray.org/ongoing/ongoing.atom
+    cadence_ms: 3600000
+    trust: 0.75
+
+  - id: joelonsoftware
+    type: rss
+    enabled: true
+    url: https://www.joelonsoftware.com/feed/
+    cadence_ms: 3600000
+    trust: 0.7
+
+  - id: samaltman
+    type: rss
+    enabled: true
+    url: https://blog.samaltman.com/posts.atom
+    cadence_ms: 3600000
+    trust: 0.8
